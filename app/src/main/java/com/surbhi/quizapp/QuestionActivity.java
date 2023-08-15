@@ -1,9 +1,12 @@
 package com.surbhi.quizapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.RadioButton;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.surbhi.quizapp.Model.QuizQuestion;
 import com.surbhi.quizapp.databinding.ActivityQuestionBinding;
@@ -11,18 +14,92 @@ import com.surbhi.quizapp.databinding.ActivityQuestionBinding;
 public class QuestionActivity extends AppCompatActivity {
 
     private ActivityQuestionBinding binding;
+    private String subName;
+    private QuizQuestion[] oopsQuestions, cLanguageQuestions, javaQuestions, scienceQuestions, mathQuestions;
+    private int i = 0;
+    private int correctAnswers = 0, wrongAnswers = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityQuestionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         loadQuestion();
+
+        binding.btnNextQue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int rdSelectedBtn = binding.rdGroup.getCheckedRadioButtonId();
+                if (rdSelectedBtn == -1) {
+                    Toast.makeText(QuestionActivity.this, "Please Select Any Answer!!!", Toast.LENGTH_SHORT).show();
+                } else {
+                    RadioButton radioButton = (RadioButton) binding.rdGroup.findViewById(rdSelectedBtn);
+                    String userAnswer = radioButton.getText().toString();
+
+                    if (subName.equals("Maths") && i != 10) {
+                        int ansIndex = mathQuestions[i].getCorrectOptionIndex();
+                        String rightAnswer = mathQuestions[i].getOptions()[ansIndex];
+                        if (userAnswer.equals(rightAnswer)) {
+                            correctAnswers++;
+                        } else {
+                            wrongAnswers++;
+                        }
+                        i++;
+                        nextQuestion();
+                    } else if (subName.equals("Java") && i != 10) {
+                        int ansIndex = javaQuestions[i].getCorrectOptionIndex();
+                        String rightAnswer = cLanguageQuestions[i].getOptions()[ansIndex];
+                        if (userAnswer.equals(rightAnswer)) {
+                            correctAnswers++;
+                        } else {
+                            wrongAnswers++;
+                        }
+                        i++;
+                        nextQuestion();
+                    } else if (subName.equals("CLang") && i != 10) {
+                        int ansIndex = cLanguageQuestions[i].getCorrectOptionIndex();
+                        String rightAnswer = cLanguageQuestions[i].getOptions()[ansIndex];
+                        if (userAnswer.equals(rightAnswer)) {
+                            correctAnswers++;
+                        } else {
+                            wrongAnswers++;
+                        }
+                        i++;
+                        nextQuestion();
+                    } else if (subName.equals("OOPS") && i != 10) {
+                        int ansIndex = oopsQuestions[i].getCorrectOptionIndex();
+                        String rightAnswer = oopsQuestions[i].getOptions()[ansIndex];
+                        if (userAnswer.equals(rightAnswer)) {
+                            correctAnswers++;
+                        } else {
+                            wrongAnswers++;
+                        }
+                        i++;
+                        nextQuestion();
+                    } else if (subName.equals("Science") && i != 10) {
+                        int ansIndex = scienceQuestions[i].getCorrectOptionIndex();
+                        String rightAnswer = scienceQuestions[i].getOptions()[ansIndex];
+                        if (userAnswer.equals(rightAnswer)) {
+                            correctAnswers++;
+                        } else {
+                            wrongAnswers++;
+                        }
+                        i++;
+                        nextQuestion();
+                    } else {
+                        Toast.makeText(QuestionActivity.this, "i = " + i + "Result Time: " + correctAnswers + "Wrong Answer: " + wrongAnswers, Toast.LENGTH_LONG).show();
+                    }
+                }
+
+
+            }
+        });
     }
 
     private void loadQuestion() {
 
-        QuizQuestion[] mathQuestions = {
+        mathQuestions = new QuizQuestion[]{
                 new QuizQuestion("What is the value of π (pi) to two decimal places?",
                         new String[]{"3.14", "3.16", "3.18", "3.12"}, 0),
                 new QuizQuestion("What is the result of 5² + 3 x 2?",
@@ -45,7 +122,7 @@ public class QuestionActivity extends AppCompatActivity {
                         new String[]{"13 units²", "35 units²", "40 units²", "42 units²"}, 2),
         };
 
-        QuizQuestion[] scienceQuestions = {
+        scienceQuestions = new QuizQuestion[]{
                 new QuizQuestion("What is the chemical symbol for gold?",
                         new String[]{"Go", "Gd", "Au", "Ag"}, 2),
                 new QuizQuestion("What is the process by which plants make their own food using sunlight?",
@@ -68,7 +145,7 @@ public class QuestionActivity extends AppCompatActivity {
                         new String[]{"Crust", "Mantle", "Core", "Atmosphere"}, 0),
         };
 
-        QuizQuestion[] javaQuestions = {
+        javaQuestions = new QuizQuestion[]{
                 new QuizQuestion("Which keyword is used to define a class in Java?",
                         new String[]{"class", "struct", "interface", "object"}, 0),
                 new QuizQuestion("What is the output of the following code snippet?\nint x = 5;\nx += 3;\nSystem.out.println(x);",
@@ -97,7 +174,7 @@ public class QuestionActivity extends AppCompatActivity {
                         new String[]{"Polymorphism", "Abstraction", "Inheritance", "Encapsulation"}, 0),
         };
 
-        QuizQuestion[] cLanguageQuestions = {
+        cLanguageQuestions = new QuizQuestion[]{
                 new QuizQuestion("What does the 'printf' function in C do?",
                         new String[]{"Reads input from the user",
                                 "Prints output to the console",
@@ -127,7 +204,7 @@ public class QuestionActivity extends AppCompatActivity {
                                 "To print output to the console", "To declare variables"}, 0),
         };
 
-        QuizQuestion[] oopsQuestions = {
+        oopsQuestions = new QuizQuestion[]{
                 new QuizQuestion("What is encapsulation in OOP?",
                         new String[]{"Hiding the internal implementation details of an object.",
                                 "Creating instances of a class.",
@@ -165,45 +242,58 @@ public class QuestionActivity extends AppCompatActivity {
                                 "An instance of an object."}, 1),
         };
 
-        String subName = getIntent().getStringExtra("SubjectName");
+        subName = getIntent().getStringExtra("SubjectName");
 
         if (subName != null) {
-            if (subName.equals("Maths")) {
-                binding.txQuizName.setText(subName + " Quiz");
-                binding.txQuestion.setText(mathQuestions[0].getQuestion());
-                binding.rdBtnA.setText(mathQuestions[0].getOptions()[0]);
-                binding.rdBtnB.setText(mathQuestions[0].getOptions()[1]);
-                binding.rdBtnC.setText(mathQuestions[0].getOptions()[2]);
-                binding.rdBtnD.setText(mathQuestions[0].getOptions()[3]);
-            } else if (subName.equals("Java")) {
-                binding.txQuizName.setText(subName + " Quiz");
-                binding.txQuestion.setText(javaQuestions[0].getQuestion());
-                binding.rdBtnA.setText(javaQuestions[0].getOptions()[0]);
-                binding.rdBtnB.setText(javaQuestions[0].getOptions()[1]);
-                binding.rdBtnC.setText(javaQuestions[0].getOptions()[2]);
-                binding.rdBtnD.setText(javaQuestions[0].getOptions()[3]);
-            } else if (subName.equals("CLang")) {
-                binding.txQuizName.setText(subName + " Quiz");
-                binding.txQuestion.setText(cLanguageQuestions[0].getQuestion());
-                binding.rdBtnA.setText(cLanguageQuestions[0].getOptions()[0]);
-                binding.rdBtnB.setText(cLanguageQuestions[0].getOptions()[1]);
-                binding.rdBtnC.setText(cLanguageQuestions[0].getOptions()[2]);
-                binding.rdBtnD.setText(cLanguageQuestions[0].getOptions()[3]);
-            } else if (subName.equals("OOPS")) {
-                binding.txQuizName.setText(subName + " Quiz");
-                binding.txQuestion.setText(oopsQuestions[0].getQuestion());
-                binding.rdBtnA.setText(oopsQuestions[0].getOptions()[0]);
-                binding.rdBtnB.setText(oopsQuestions[0].getOptions()[1]);
-                binding.rdBtnC.setText(oopsQuestions[0].getOptions()[2]);
-                binding.rdBtnD.setText(oopsQuestions[0].getOptions()[3]);
-            } else if (subName.equals("Science")) {
-                binding.txQuizName.setText(subName + " Quiz");
-                binding.txQuestion.setText(scienceQuestions[0].getQuestion());
-                binding.rdBtnA.setText(scienceQuestions[0].getOptions()[0]);
-                binding.rdBtnB.setText(scienceQuestions[0].getOptions()[1]);
-                binding.rdBtnC.setText(scienceQuestions[0].getOptions()[2]);
-                binding.rdBtnD.setText(scienceQuestions[0].getOptions()[3]);
-            }
+            binding.txQuizName.setText(subName + " Quiz");
+            nextQuestion();
+        }
+
+    }
+
+    private void nextQuestion() {
+        binding.rdGroup.clearCheck();
+        if (subName.equals("Maths") && i != 10) {
+            binding.txQuestion.setText(mathQuestions[i].getQuestion());
+            binding.rdBtnA.setText(mathQuestions[i].getOptions()[0]);
+            binding.rdBtnB.setText(mathQuestions[i].getOptions()[1]);
+            binding.rdBtnC.setText(mathQuestions[i].getOptions()[2]);
+            binding.rdBtnD.setText(mathQuestions[i].getOptions()[3]);
+        } else if (subName.equals("Java") && i != 10) {
+            binding.txQuizName.setText(subName + " Quiz");
+            binding.txQuestion.setText(javaQuestions[i].getQuestion());
+            binding.rdBtnA.setText(javaQuestions[i].getOptions()[0]);
+            binding.rdBtnB.setText(javaQuestions[i].getOptions()[1]);
+            binding.rdBtnC.setText(javaQuestions[i].getOptions()[2]);
+            binding.rdBtnD.setText(javaQuestions[i].getOptions()[3]);
+        } else if (subName.equals("CLang") && i != 10) {
+            binding.txQuizName.setText(subName + " Quiz");
+            binding.txQuestion.setText(cLanguageQuestions[0].getQuestion());
+            binding.rdBtnA.setText(cLanguageQuestions[i].getOptions()[0]);
+            binding.rdBtnB.setText(cLanguageQuestions[i].getOptions()[1]);
+            binding.rdBtnC.setText(cLanguageQuestions[i].getOptions()[2]);
+            binding.rdBtnD.setText(cLanguageQuestions[i].getOptions()[3]);
+        } else if (subName.equals("OOPS") && i != 10) {
+            binding.txQuizName.setText(subName + " Quiz");
+            binding.txQuestion.setText(oopsQuestions[i].getQuestion());
+            binding.rdBtnA.setText(oopsQuestions[i].getOptions()[0]);
+            binding.rdBtnB.setText(oopsQuestions[i].getOptions()[1]);
+            binding.rdBtnC.setText(oopsQuestions[i].getOptions()[2]);
+            binding.rdBtnD.setText(oopsQuestions[i].getOptions()[3]);
+        } else if (subName.equals("Science") && i != 10) {
+            binding.txQuizName.setText(subName + " Quiz");
+            binding.txQuestion.setText(scienceQuestions[0].getQuestion());
+            binding.rdBtnA.setText(scienceQuestions[i].getOptions()[0]);
+            binding.rdBtnB.setText(scienceQuestions[i].getOptions()[1]);
+            binding.rdBtnC.setText(scienceQuestions[i].getOptions()[2]);
+            binding.rdBtnD.setText(scienceQuestions[i].getOptions()[3]);
+        } else {
+            Toast.makeText(QuestionActivity.this, "i = " + i + "Result Time: " + correctAnswers + "Wrong Answer: " + wrongAnswers, Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(QuestionActivity.this, ResultActivity.class);
+            intent.putExtra("correctAnswer", correctAnswers);
+            intent.putExtra("wrongAnswer", wrongAnswers);
+            intent.putExtra("subjectName", subName);
+            startActivity(intent);
         }
     }
 }
