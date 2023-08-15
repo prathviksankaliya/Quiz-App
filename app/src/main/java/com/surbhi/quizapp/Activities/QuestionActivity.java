@@ -282,7 +282,7 @@ public class QuestionActivity extends AppCompatActivity {
             binding.rdBtnD.setText(oopsQuestions[i].getOptions()[3]);
         } else if (subName.equals("Science") && i != 10) {
             binding.txQuizName.setText(subName + " Quiz");
-            binding.txQuestion.setText(scienceQuestions[0].getQuestion());
+            binding.txQuestion.setText(scienceQuestions[i].getQuestion());
             binding.rdBtnA.setText(scienceQuestions[i].getOptions()[0]);
             binding.rdBtnB.setText(scienceQuestions[i].getOptions()[1]);
             binding.rdBtnC.setText(scienceQuestions[i].getOptions()[2]);
