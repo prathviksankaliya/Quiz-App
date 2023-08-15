@@ -49,7 +49,7 @@ public class QuestionActivity extends AppCompatActivity {
                         nextQuestion();
                     } else if (subName.equals("Java") && i != 10) {
                         int ansIndex = javaQuestions[i].getCorrectOptionIndex();
-                        String rightAnswer = cLanguageQuestions[i].getOptions()[ansIndex];
+                        String rightAnswer = javaQuestions[i].getOptions()[ansIndex];
                         if (userAnswer.equals(rightAnswer)) {
                             correctAnswers++;
                         } else {
