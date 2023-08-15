@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".QuestionActivity">
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/baseline_keyboard_backspace_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txQuizName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="sans-serif"
+        android:text="Maths Quiz"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toTopOf="@+id/imageView7" />
+
+    <TextView
+        android:id="@+id/txQuestion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="Which operator is used to access the value at a memory address in C?"
+        android:textSize="26sp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/imageView7"
+        app:layout_constraintTop_toBottomOf="@+id/txQuizName" />
+
+    <RadioGroup
+        android:id="@+id/rdGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/txQuestion"
+        app:layout_constraintStart_toStartOf="@+id/txQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/txQuestion">
+
+        <RadioButton
+            android:id="@+id/rdBtnA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Converts data types."
+            android:textSize="22sp" />
+
+        <RadioButton
+            android:id="@+id/rdBtnB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Performs mathematical calculations."
+            android:textSize="22sp" />
+
+        <RadioButton
+            android:id="@+id/rdBtnC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Converts data types."
+            android:textSize="22sp" />
+
+        <RadioButton
+            android:id="@+id/rdBtnD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Converts data types."
+            android:textSize="22sp" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnNextQue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif"
+        android:text="Next"
+        android:backgroundTint="@color/green"
+        android:padding="12dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/rdGroup"
+        app:layout_constraintStart_toStartOf="@+id/rdGroup" />
+</androidx.constraintlayout.widget.ConstraintLayout>
