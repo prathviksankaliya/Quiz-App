@@ -268,7 +268,7 @@ public class QuestionActivity extends AppCompatActivity {
             binding.rdBtnD.setText(javaQuestions[i].getOptions()[3]);
         } else if (subName.equals("CLang") && i != 10) {
             binding.txQuizName.setText(subName + " Quiz");
-            binding.txQuestion.setText(cLanguageQuestions[0].getQuestion());
+            binding.txQuestion.setText(cLanguageQuestions[i].getQuestion());
             binding.rdBtnA.setText(cLanguageQuestions[i].getOptions()[0]);
             binding.rdBtnB.setText(cLanguageQuestions[i].getOptions()[1]);
             binding.rdBtnC.setText(cLanguageQuestions[i].getOptions()[2]);
@@ -288,12 +288,12 @@ public class QuestionActivity extends AppCompatActivity {
             binding.rdBtnC.setText(scienceQuestions[i].getOptions()[2]);
             binding.rdBtnD.setText(scienceQuestions[i].getOptions()[3]);
         } else {
-            Toast.makeText(QuestionActivity.this, "i = " + i + "Result Time: " + correctAnswers + "Wrong Answer: " + wrongAnswers, Toast.LENGTH_LONG).show();
             Intent intent = new Intent(QuestionActivity.this, ResultActivity.class);
             intent.putExtra("correctAnswer", correctAnswers);
             intent.putExtra("wrongAnswer", wrongAnswers);
             intent.putExtra("subjectName", subName);
             startActivity(intent);
+            finish();
         }
     }
 }
