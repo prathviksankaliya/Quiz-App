@@ -168,8 +168,11 @@ public class QuestionActivity extends AppCompatActivity {
                         new String[]{"new", "create", "instance", "implement"}, 0),
                 new QuizQuestion("What is the access modifier for a member variable that should be visible only within its own class?",
                         new String[]{"private", "public", "protected", "default"}, 0),
-                new QuizQuestion("In Java, a class can inherit from only one superclass. Is this statement true or false?",
-                        new String[]{"True", "False"}, 0),
+                new QuizQuestion("What is the purpose of the 'final' keyword in Java?",
+                        new String[]{"To mark a method as the entry point of the program.",
+                                "To create a new instance of a class.",
+                                "To indicate a variable that can be changed.",
+                                "To declare a constant value that cannot be modified."}, 3),
                 new QuizQuestion("What is the term for the ability of objects of different classes to be treated as objects of the same class?",
                         new String[]{"Polymorphism", "Abstraction", "Inheritance", "Encapsulation"}, 0),
         };
