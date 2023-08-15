@@ -1,4 +1,4 @@
-package com.surbhi.quizapp;
+package com.surbhi.quizapp.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;

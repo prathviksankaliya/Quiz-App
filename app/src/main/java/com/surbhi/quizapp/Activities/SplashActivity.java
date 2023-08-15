@@ -1,4 +1,4 @@
-package com.surbhi.quizapp;
+package com.surbhi.quizapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentContainerView;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.surbhi.quizapp.Fragments.SplashFragment;
+import com.surbhi.quizapp.R;
 
 public class SplashActivity extends AppCompatActivity {
 

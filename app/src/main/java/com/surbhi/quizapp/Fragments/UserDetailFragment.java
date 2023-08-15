@@ -1,7 +1,6 @@
 package com.surbhi.quizapp.Fragments;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,8 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.surbhi.quizapp.MainActivity;
-import com.surbhi.quizapp.R;
+import com.surbhi.quizapp.Activities.MainActivity;
 import com.surbhi.quizapp.databinding.FragmentUserDetailBinding;
 import com.surbhi.quizapp.spf.SpfManager;
 

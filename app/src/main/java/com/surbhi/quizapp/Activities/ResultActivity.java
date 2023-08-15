@@ -1,4 +1,4 @@
-package com.surbhi.quizapp;
+package com.surbhi.quizapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.surbhi.quizapp.R;
 import com.surbhi.quizapp.databinding.ActivityResultBinding;
 
 public class ResultActivity extends AppCompatActivity {

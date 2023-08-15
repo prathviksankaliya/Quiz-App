@@ -1,4 +1,4 @@
-package com.surbhi.quizapp;
+package com.surbhi.quizapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
